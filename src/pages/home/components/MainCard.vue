@@ -1,6 +1,6 @@
 <template>
 	<div class="root">
-		<div class="card">
+		<div class="card" id="card-main" @click="exportPic('card-main')">
 			<div class="head">
 				<div class="head-date-left">
 					<div class="month">{{_month}}</div>
@@ -17,8 +17,11 @@
 				<div class="icon-year">2022</div>
 			</div>
 			<div class="content">
-				<div class="content-text" v-bind:style="{'text-align-last': content_align }">{{content}}</div>
+				<div class="content-text" v-bind:style="{'text-align': content_align }">{{content}}</div>
 				<div class="content-author" v-if="author">{{'—— ' + author}}</div>
+			</div>
+			<div class="footer">
+				不用刻意合群，有趣的人自然会相互吸引。
 			</div>
 		</div>
 		<div class="controller">
@@ -33,6 +36,7 @@
 </template>
 
 <script>
+	import html2Canvas from 'html2canvas'
 	export default {
 		name: "MainCard",
 		props: {
@@ -48,8 +52,8 @@
 		},
 		data() {
 			return {
-				content: "时间会刺破青春表面的彩饰，会在美人的额上掘深沟浅槽；会吃掉稀世之珍！天生丽质，什么都逃不过他那横扫的镰刀。",
-				author: "莎士比亚",
+				content: "世界上只有一种真正的英雄主义，那就是看清生活的真相之后，依然热爱生活。",
+				author: "罗曼罗兰",
 				content_align: "center"
 			}
 		},
@@ -72,6 +76,19 @@
 				} else {
 					this.content_align = 'center'
 				}
+			},
+			exportPic: function(divId) {
+				html2Canvas(document.querySelector("#" + divId)).then(canvas => {
+					let dataURL = canvas.toDataURL("image/png");
+					var newTab = window.open('about:blank', 'image from canvas');
+					newTab.document.write("<img src='" + dataURL + "' alt='from canvas'/>");
+				})
+			},
+			exportPicName: function() {
+				var year = this.date.getFullYear();
+				var month = this.date.getMonth() + 1;
+				var monthStr = month < 10 ? '0' + month : month
+				return year + '-' + monthStr + '-' + this._day + '-main'
 			}
 		}
 	}
@@ -82,7 +99,9 @@
 		display: flex;
 		flex-direction: column;
 		background-color: #fff;
-		padding: 20px 20px 40px 20px;
+		padding: 20px 20px 10px 20px;
+		box-shadow: gray 0px 0px 4px;
+		border-radius: 4px;
 	}
 
 	.head {
@@ -123,7 +142,6 @@
 	.icon-img {
 		width: 100px;
 		height: 100px;
-		filter: red;
 	}
 
 	.icon-year {
@@ -143,16 +161,24 @@
 		color: #181915;
 		letter-spacing: 2px;
 		line-height: 180%;
-		text-align: justify;
-		/* text-align-last: center; */
+		text-align: center;
+		/* 响应换行符 */
 		white-space: pre-wrap;
 	}
 
 	.content-author {
-		font-size: 20px;
+		font-size: 16px;
 		color: #181915;
 		margin-top: 18px;
 		align-self: flex-end;
+	}
+
+	.footer {
+		font-size: 12px;
+		margin-top: 40px;
+		text-align: center;
+		color: #c9c9c9;
+		font-weight: 100;
 	}
 
 	.container .controller {
@@ -163,6 +189,7 @@
 
 	.controller textarea {
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.author-and-align {

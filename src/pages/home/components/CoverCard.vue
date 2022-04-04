@@ -1,5 +1,5 @@
 <template>
-	<div class="root">
+	<div class="root" id="card-cover" @click="exportPic('card-cover')">
 		<div class="head">
 			<div class="head-year-month">{{yearMonth}}</div>
 			<div class="head-nongli" v-if="nongli">{{'农历' + nongli}}</div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+	import html2Canvas from 'html2canvas'
 	export default {
 		name: "CoverCard",
 		props: {
@@ -35,8 +36,6 @@
 		},
 		computed: {
 			yearMonth: function() {
-				console.log(this.date)
-				console.log(this.date.getFullYear())
 				var year = this.date.getFullYear();
 				var month = this.date.getMonth() + 1;
 				return year + '年' + month + '月';
@@ -60,6 +59,21 @@
 				];
 				return arr[this.date.getDay()];
 			}
+		},
+		methods: {
+			exportPic: function(divId) {
+				html2Canvas(document.querySelector("#" + divId)).then(canvas => {
+					let dataURL = canvas.toDataURL("image/png");
+					var newTab = window.open('about:blank','image from canvas');
+					newTab.document.write("<img src='" + dataURL + "' alt='from canvas'/>");
+				})
+			},
+			exportPicName: function() {
+				var year = this.date.getFullYear();
+				var month = this.date.getMonth() + 1;
+				var monthStr = month < 10 ? '0' + month : month
+				return year + '-' + monthStr + '-' + this.day + '-cover.png'
+			}
 		}
 	}
 </script>
@@ -73,6 +87,8 @@
 		background-color: #fff;
 		width: 100%;
 		height: 42.55vw;
+		box-shadow: gray 0px 0px 4px;
+		border-radius: 4px;
 	}
 
 	.head {
