@@ -84,11 +84,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: #fff;
+		background-color: #fcfcfc;
 		width: 100%;
 		height: 42.55vw;
-		box-shadow: gray 0px 0px 4px;
-		border-radius: 4px;
 	}
 
 	.head {

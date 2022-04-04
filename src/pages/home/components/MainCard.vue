@@ -98,10 +98,8 @@
 	.card {
 		display: flex;
 		flex-direction: column;
-		background-color: #fff;
+		background-color: #fcfcfc;
 		padding: 20px 20px 10px 20px;
-		box-shadow: gray 0px 0px 4px;
-		border-radius: 4px;
 	}
 
 	.head {
