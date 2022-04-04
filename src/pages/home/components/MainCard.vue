@@ -31,6 +31,7 @@
 				<input placeholder="请输入作者名" v-model="author" />
 				<button @click="changeContentAlign">{{'对齐方式：' + content_align}}</button>
 			</div>
+
 		</div>
 	</div>
 </template>
@@ -78,7 +79,10 @@
 				}
 			},
 			exportPic: function(divId) {
-				html2Canvas(document.querySelector("#" + divId)).then(canvas => {
+				html2Canvas(document.querySelector("#" + divId), {
+					useCORS: true,
+					scale: window.devicePixelRatio
+				}).then(canvas => {
 					let dataURL = canvas.toDataURL("image/png");
 					var newTab = window.open('about:blank', 'image from canvas');
 					newTab.document.write("<img src='" + dataURL + "' alt='from canvas'/>");
@@ -98,7 +102,7 @@
 	.card {
 		display: flex;
 		flex-direction: column;
-		background-color: #fcfcfc;
+		background-color: #fff;
 		padding: 20px 20px 10px 20px;
 	}
 

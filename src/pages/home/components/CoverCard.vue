@@ -21,9 +21,6 @@
 			date: {
 				type: Date,
 				required: true,
-				// default: function() {
-				// 	return new Date();
-				// }
 			},
 			nongli: {
 				type: String,
@@ -104,7 +101,7 @@
 
 	.day {
 		color: #5e5e60;
-		font-size: 80px;
+		font-size: 60px;
 	}
 
 	.week {
