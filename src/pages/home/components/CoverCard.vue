@@ -61,8 +61,10 @@
 			exportPic: function(divId) {
 				html2Canvas(document.querySelector("#" + divId)).then(canvas => {
 					let dataURL = canvas.toDataURL("image/png");
-					var newTab = window.open('about:blank','image from canvas');
-					newTab.document.write("<img src='" + dataURL + "' alt='from canvas'/>");
+					var a = document.createElement('a')
+					a.href = dataURL
+					a.download = this.exportPicName()
+					a.click()
 				})
 			},
 			exportPicName: function() {
