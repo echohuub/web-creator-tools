@@ -25,7 +25,7 @@
 		data() {
 			return {
 				dateStr: this.getFormatDate(),
-				nongli: "三月初四",
+				nongli: "三月十一",
 			}
 		},
 		computed: {

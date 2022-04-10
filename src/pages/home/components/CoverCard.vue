@@ -83,7 +83,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: #fcfcfc;
+		background: url('../../../assets/bg_cover_colors.jpeg') center;
 		width: 100%;
 		height: 42.55vw;
 	}
@@ -91,7 +91,7 @@
 	.head {
 		display: flex;
 		flex-direction: row;
-		color: #606060;
+		color: #555555;
 		font-size: 14px;
 	}
 
@@ -102,14 +102,14 @@
 	}
 
 	.day {
-		color: #5e5e60;
+		color: #555555;
 		font-size: 60px;
 	}
 
 	.week {
 		display: flex;
 		flex-direction: row;
-		color: #6e6e6e;
+		color: #555555;
 		font-size: 18px;
 	}
 

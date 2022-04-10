@@ -101,7 +101,7 @@
 	.card {
 		display: flex;
 		flex-direction: column;
-		background-color: #fff;
+		background-color: #e7e8e1;
 		padding: 20px 20px 10px 20px;
 	}
 
@@ -141,8 +141,8 @@
 	}
 
 	.icon-img {
-		width: 100px;
-		height: 100px;
+		width: 80px;
+		height: 80px;
 	}
 
 	.icon-year {
